@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Login/Parent Lookup{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-5 mb-4">
+        <div class="card bg-white shadow-sm border-0">
+            <div class="card-header bg-dark text-white text-center">
+                <h4 class="mb-0">👨‍🏫 Teacher Login</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('login') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Log In</button>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <small>New teacher? <a href="{{ url_for('register') }}">Register Here</a></small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5 mb-4">
+        <div class="card bg-light shadow-sm border-0">
+            <div class="card-header bg-info text-white text-center">
+                <h4 class="mb-0">👨‍👩‍👧 Parent Student Lookup</h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('parent_lookup') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="roll_no" class="form-label">Student Enrollment No. (Roll No.)</label>
+                        <input type="number" class="form-control" id="roll_no" name="roll_no" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="parent_email" class="form-label">Parent Email</label>
+                        <input type="email" class="form-control" id="parent_email" name="parent_email" required>
+                    </div>
+                    <button type="submit" class="btn btn-info w-100">View Student Dashboard</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

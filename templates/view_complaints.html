@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}View All Complaints{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Student Complaints</h2>
+    <a href="{{ url_for('add_complaint') }}" class="btn btn-danger">+ File New Complaint</a>
+</div>
+
+<table class="table table-bordered table-striped bg-white">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Roll No</th>
+            <th>Title</th>
+            <th>Filed By</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in complaints %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.student_roll_no }}</td>
+            <td><strong>{{ c.title }}</strong></td>
+            <td>{{ c.teacher_username }}</td>
+            <td>{{ c.date_filed.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td><span class="badge bg-{% if c.status == 'Resolved' %}success{% else %}warning{% endif %}">{{ c.status }}</span></td>
+            <td>{{ c.description }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="7" class="text-center">No complaints have been filed yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

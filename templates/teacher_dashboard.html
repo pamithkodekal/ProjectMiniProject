@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Teacher Dashboard</h2>
+    
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('view_complaints') }}" class="btn btn-secondary">View Complaints</a>
+        <a href="{{ url_for('add_complaint') }}" class="btn btn-danger">File Complaint</a>
+        
+        <a href="{{ url_for('add_student') }}" class="btn btn-success">+ Add Student</a>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped bg-white">
+    <thead class="table-dark">
+        <tr>
+            <th>Roll</th><th>Name</th><th>Standard</th><th>Attendance</th>
+            <th>Health</th><th>Pending</th><th>Submitted</th><th>Remarks</th><th>Parent Email</th><th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.roll_no or '-' }}</td>
+            <td>{{ s.name or '-' }}</td>
+            <td>{{ s.standard or '-' }}</td>
+            <td>{{ s.attendance or 0 }}</td>
+            <td>{{ s.health_issues or '-' }}</td>
+            <td>{{ s.assignments_pending or 0 }}</td>
+            <td>{{ s.assignments_submitted or 0 }}</td>
+            <td>{{ s.remarks or '-' }}</td>
+            <td>{{ s.parent_email or '-' }}</td>
+            <td>
+                <a class="btn btn-sm btn-warning" href="{{ url_for('update_student', id=s.id) }}">Edit</a>
+                <a class="btn btn-sm btn-danger" href="{{ url_for('delete_student', id=s.id) }}" onclick="return confirm('Delete?')">Delete</a>
+                <a class="btn btn-sm btn-info" href="{{ url_for('send_email_route', id=s.id) }}">Email</a> 
+            </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="10" class="text-center">No students yet</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

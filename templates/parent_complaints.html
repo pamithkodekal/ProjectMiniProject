@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Student Complaints{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">📢 Complaints Filed for {{ student.name }} (Roll No: {{ student.roll_no }})</h2>
+
+<div class="mb-4">
+    <a href="{{ url_for('parent_dashboard') }}" class="btn btn-secondary">← Back to Student Dashboard</a>
+</div>
+
+{% if complaints %}
+<div class="row">
+    {% for complaint in complaints %}
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm {% if complaint.status == 'Pending' %}border-warning{% else %}border-success{% endif %}">
+            <div class="card-header bg-light">
+                <h5 class="mb-0 text-dark">{{ complaint.title }}</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Filed By:</strong> {{ complaint.teacher_username }}</p>
+                <p><strong>Date:</strong> {{ complaint.date_filed.strftime('%Y-%m-%d %H:%M') }}</p>
+                <p class="card-text">{{ complaint.description }}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <span class="badge 
+                    {% if complaint.status == 'Pending' %}bg-warning text-dark
+                    {% elif complaint.status == 'Resolved' %}bg-success
+                    {% else %}bg-secondary
+                    {% endif %}">
+                    Status: {{ complaint.status }}
+                </span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info" role="alert">
+    No complaints have been filed for this student yet.
+</div>
+{% endif %}
+
+{% endblock %}

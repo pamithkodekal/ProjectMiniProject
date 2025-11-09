@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Add New Complaint{% endblock %}
+{% block content %}
+<h3>File a New Complaint</h3>
+<form method="POST" action="{{ url_for('add_complaint') }}" class="card p-4 bg-white shadow-sm">
+    <div class="mb-3">
+        <label class="form-label">Student Roll No.</label>
+        <input type="number" class="form-control" name="roll_no" required>
+        <small class="form-text text-muted">Enter the Roll No. of the student.</small>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Complaint Title</label>
+        <input class="form-control" name="title" maxlength="100" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" name="description" rows="5" maxlength="500" required></textarea>
+        <small class="form-text text-muted">Describe the issue in detail (e.g., behavioral problems, academic concern).</small>
+    </div>
+    
+    <button class="btn btn-danger w-100 mt-3">File Complaint</button>
+</form>
+
+<div class="mt-4 text-center">
+    <a href="{{ url_for('view_complaints') }}">View All Filed Complaints</a>
+</div>
+{% endblock %}

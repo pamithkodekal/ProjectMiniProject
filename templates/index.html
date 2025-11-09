@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+  <h1 class="display-5">Welcome to Student Management</h1>
+  <p class="lead">Choose how you want to enter:</p>
+  <div class="d-flex justify-content-center gap-3 mt-4">
+    <a class="btn btn-lg btn-primary" href="{{ url_for('login') }}">Login / Register</a>
+    <a class="btn btn-lg btn-outline-light" href="{{ url_for('register') }}">Quick Register</a>
+  </div>
+  <p class="mt-4 text-muted">After login choose Teacher or Parent role at registration/login time.</p>
+</div>
+{% endblock %}

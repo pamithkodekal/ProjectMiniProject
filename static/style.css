@@ -1,0 +1,42 @@
+/* static/style.css */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f2e7ff, #e6f0ff);
+  margin: 0;
+  color: #222;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card, .table {
+  border-radius: 10px;
+}
+
+/* Navbar */
+.navbar-brand { font-weight: 700; }
+.btn-outline-light { border-radius: 8px; }
+
+/* Forms */
+form input, form textarea, form select {
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 8px;
+}
+
+/* Alerts (bootstrap classes used) */
+.alert { border-radius: 8px; }
+
+/* Table custom */
+.table thead th { background: linear-gradient(90deg,#6a0dad,#4b0082); color: #fff; }
+.table { background: #fff; }
+
+/* Utilities */
+.text-center { text-align: center; }

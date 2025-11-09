@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Parent Dashboard{% endblock %}
+{% block content %}
+
+<h2>Parent Dashboard</h2>
+<p class="lead">View your child's records below.</p>
+
+{% if students %}
+<a href="{{ url_for('parent_complaints') }}" class="btn btn-danger my-3">
+    View Complaints History
+</a>
+{% endif %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Standard</th>
+                <th>Attendance</th>
+                <th>Assignments Pending</th>
+                <th>Assignments Submitted</th>
+                <th>Health Issues</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.roll_no }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.standard }}</td>
+                <td>{{ student.attendance }}</td>
+                <td>{{ student.assignments_pending }}</td>
+                <td>{{ student.assignments_submitted }}</td>
+                <td>{{ student.health_issues }}</td>
+                <td>{{ student.remarks }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
